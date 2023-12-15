@@ -1,10 +1,200 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body,html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow-y: hidden;
+}
+
+/* Style for the navbar */
+.navbar {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: inherit; 
+    z-index: 10; 
+}
+
+.navIcons {
+    display: flex;
+    align-items: center;
+}
+
+.navIcons a, .navIcons button {
+    color: black;
+    margin-left: 15px; 
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Style for the header */
+.header {
+    background-color: transparent;
+    padding: 10px 20px; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.headerIcons {
+    display: flex;
+    align-items: center;
+}
+
+.headerContent {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.headerText {
+    font-family: 'Roboto', sans-serif; 
+    font-weight: 700;
+    color: black; 
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+
+/* Style for the results container */
 .resultsContainer {
-    margin-top: 20px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-height: 100vh;
+    overflow-y: auto;
+    width: 100%;
 }
 
 .centerText {
     text-align: center;
 }
+
+/* Hidden input styles */
+.fileInput {
+    display: none;
+}
+  
+/* Style for the upload buttons */
+.uploadButton {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    padding: 20px 40px;
+    font-weight: bold;
+    margin: 10px; 
+    background-image: linear-gradient(to right, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    outline: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.uploadButton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    opacity: 0.9;
+}
+  
+.uploadButton:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+    opacity: 0.8;
+}
+
+/* Style for the compare button */
+.compareButton {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 18px;
+    padding: 20px 40px;
+    margin: 10px; 
+    background-image: linear-gradient(to right, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    outline: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.compareButton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    opacity: 0.9;
+}
+
+.compareButton:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+    opacity: 0.8;
+}
+  
+/* Style for the container */
+.container {
+    max-width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow-y: auto;
+    max-height: calc(100vh - 50px);
+}
+
+/* Container for the upload buttons and compare button */
+.buttonContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Style for the username list items */
+.usernameItem {
+    background-color: white; 
+    border: 1px solid #eaeaea; 
+    border-radius: 20px;
+    padding: 10px 20px;
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    text-decoration: none;
+}
+  
+.usernameText {
+    color: #262626;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.usernameItem:hover {
+    background-color: #fafafa;
+}
+
+
+
+

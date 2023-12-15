@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FaGithub} from 'react-icons/fa';
 import styles from './FollowerChecker.module.css';
 
 function FollowerChecker() {
@@ -6,6 +7,7 @@ function FollowerChecker() {
     const [followingFile, setFollowingFile] = useState(null);
     const [result, setResult] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+
 
     const handleFollowersFileChange = (e) => {
         setFollowersFile(e.target.files[0]);
@@ -36,17 +38,17 @@ function FollowerChecker() {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
 
-            // Artificial delay for testing 2 seconds
-            //await new Promise(resolve => setTimeout(resolve, 2000));
-
+            const handleUserClick = (username) => {
+              window.open(`https://www.instagram.com/${username}`, '_blank');
+            };
+            
             const data = await response.json();
             setResult(data.notFollowedBack.map(username => (
-                <div key={username} className={styles.centerText}>
-                    <a href={`https://www.instagram.com/${username}`} target="_blank" rel="noopener noreferrer">
-                        {username}
-                    </a>
-                </div>
+              <div key={username} className={styles.usernameItem} onClick={() => handleUserClick(username)}>
+                <span className={styles.usernameText}>{username}</span>
+              </div>
             )));
+
         } catch (error) {
             console.error('Error uploading files:', error);
             alert('An error occurred. Please try again.');
@@ -56,18 +58,64 @@ function FollowerChecker() {
     };
 
     return (
-        <div>
-            <h1 className={styles.centerText}>Instagram Follower Checker</h1>
-            <input type="file" onChange={handleFollowersFileChange} accept=".json" />
-            <input type="file" onChange={handleFollowingFileChange} accept=".json" />
-            <button onClick={handleCompare} disabled={isLoading}>
+      <>
+        <div className={styles.container}>
+        
+        <nav className={styles.navbar}>
+                <div className={styles.navIcons}>
+                    <a href="https://github.com/skalidindi53" target="_blank" rel="noopener noreferrer">
+                        <FaGithub size={50} />
+                    </a>
+                </div>
+        </nav>
+        
+        <header className={styles.header}>
+            <h1 className={styles.headerText}>Instagram Follower Checker</h1>
+        </header>
+
+            <div className={styles.buttonContainer}>
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <label htmlFor="followersInput" className={styles.uploadButton}>
+                  Upload Followers
+                  <input
+                    id="followersInput"
+                    type="file"
+                    onChange={handleFollowersFileChange}
+                    accept=".json"
+                    className={styles.fileInput}
+                  />
+                </label>
+      
+                <label htmlFor="followingInput" className={styles.uploadButton}>
+                  Upload Following
+                  <input
+                    id="followingInput"
+                    type="file"
+                    onChange={handleFollowingFileChange}
+                    accept=".json"
+                    className={styles.fileInput}
+                  />
+                </label>
+              </div>
+      
+              <button onClick={handleCompare} disabled={isLoading} className={`${styles.uploadButton} ${styles.compareButton}`}>
                 {isLoading ? 'Processing...' : 'Compare'}
-            </button>
-            <div className={styles.resultsContainer}>
-                {result}
+              </button>
+
             </div>
-        </div>
+      
+          <div className={styles.resultsContainer}>
+              {Array.isArray(result) && result.map(username => (
+              <div>
+                  <span className={styles.usernameText}>{username}</span>
+              </div>
+              ))}
+          </div>
+          
+      </div>
+    </>
     );
+
 }
 
 export default FollowerChecker;
