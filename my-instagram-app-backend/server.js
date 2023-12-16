@@ -13,7 +13,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
-//const upload = multer({ dest: 'uploads/' });
+
 const upload = multer({
     storage: multerS3({
         s3: s3,
@@ -28,30 +28,7 @@ app.get("/", (req,res) => {
     res.send("Server is running");
 });
 
-// app.post('/upload', upload.array('files', 2), (req, res) => {
-//     if (req.files.length !== 2) {
-//         return res.status(400).send('Please upload two files');
-//     }
 
-//     const [followersFile, followingFile] = req.files;
-
-//     try {
-//         const followersData = parseJsonFile(followersFile.path);
-//         const followingData = parseJsonFile(followingFile.path);
-
-//         const notFollowedBack = compareFollowers(followersData, followingData);
-
-//         req.files.forEach(file => {
-//             fs.unlinkSync(file.path);
-//         });
-
-//         res.json({ notFollowedBack });
-
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).send('Error processing files');
-//     }
-// });
 
 app.post('/upload', upload.array('files', 2), async (req, res) => {
     if (req.files.length !== 2) {
@@ -120,10 +97,6 @@ function streamToString(stream) {
     });
 }
 
-// const parseJsonFile = (filePath) => {
-//     const rawData = fs.readFileSync(filePath);
-//     return JSON.parse(rawData);
-// };
 
 const compareFollowers = (followers, following) => {
     const extractUsernames = (data) => data.flatMap(item => item.string_list_data.map(user => user.value.toLowerCase()));
