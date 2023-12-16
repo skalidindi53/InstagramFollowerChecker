@@ -1,18 +1,22 @@
+//Imports
 const express = require('express');
 const multer = require('multer');
 const cors = require('cors');
 const fs = require('fs');
 
+//Middleware
 const app = express();
-
-app.use("/", (req, res) => {
-    res.send("Server is running");
-});
-
 app.use(cors()); 
 app.use(express.json());
 
+//Routes
 const upload = multer({ dest: 'uploads/' });
+const PORT = 5000;
+
+// Start server
+app.use("/", (req, res) => {
+    res.send("Server is running");
+});
 
 app.post('/upload', upload.array('files', 2), (req, res) => {
     if (req.files.length !== 2) {
@@ -51,6 +55,7 @@ const compareFollowers = (followers, following) => {
     return followingUsernames.filter(username => !followerUsernames.includes(username));
 };
 
-app.listen(5000, () => {
-    console.log('Server is running on port 5000');
+
+app.listen(PORT, () => {
+    console.log('Server is running on port ' + PORT + '.');
 });
