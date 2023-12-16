@@ -5,6 +5,10 @@ const fs = require('fs');
 
 const app = express();
 
+app.use("/", (req, res) => {
+    res.send("Server is running");
+});
+
 app.use(cors()); 
 app.use(express.json());
 
