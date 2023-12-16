@@ -10,6 +10,10 @@ app.use(express.json());
 
 const upload = multer({ dest: 'uploads/' });
 
+app.get("/", (req,res) => {
+    res.send("Server is runnnig");
+});
+
 app.post('/upload', upload.array('files', 2), (req, res) => {
     if (req.files.length !== 2) {
         return res.status(400).send('Please upload two files');
