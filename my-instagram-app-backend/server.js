@@ -7,8 +7,10 @@ const { S3Client, GetObjectCommand, DeleteObjectCommand } = require("@aws-sdk/cl
 const s3 = new S3Client({region: process.env.AWS_REGION || 'us-east-1'});
 
 const app = express();
-
-app.use(cors()); 
+const corsOptions = {
+    origin: 'https://follow-checker-ig-client.vercel.app'
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 
 //const upload = multer({ dest: 'uploads/' });
