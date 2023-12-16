@@ -29,7 +29,7 @@ function FollowerChecker() {
         formData.append('files', followingFile);
 
         try {
-            const response = await fetch('/upload', {
+            const response = await fetch('https://concerned-tam-dove.cyclic.app/upload', {
                 method: 'POST',
                 body: formData,
             });
