@@ -18,7 +18,7 @@ For a detailed guide on downloading your Instagram data, check out: [How to Requ
 
 Experience the "Instagram Follower Checker" in action: [Visit the Live Demo](https://follow-checker-ig-client.vercel.app/)
 
-Link for video
+https://github.com/skalidindi53/FollowCheckerIG/assets/94879708/3f97b336-d2e7-4eb8-8c23-3d073846d7b4
 
 
 ## Tech Stack
